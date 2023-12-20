@@ -9,6 +9,17 @@ export default class ApiClient{
         if(!this.apiUrl.endsWith('/')){
             this.apiUrl += '/';
         }
+
+        
+    }
+
+    getCommonRequest(){
+        return {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            }
+          };
     }
 
     setToken(token){
@@ -20,26 +31,32 @@ export default class ApiClient{
     }
 
     async login(user, password){
-        let response = await fetch(`${this.apiUrl}login`, {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json; charset=utf-8"
-            },
+        let response = await fetch(`${this.apiUrl}login`,
+        {
+            ...this.getCommonRequest(),
             body: JSON.stringify({
               email: user,
               password: password
             })
-          });
+        });
         
         return await response.json();
     }
 
     async getProducts(){
         const response = await fetch(`${this.apiUrl}products`, {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json; charset=utf-8"
-            },
+            ...this.getCommonRequest(),
+            body: JSON.stringify({
+              token: this.token
+            })
+          });
+
+        return response.json();
+    }
+
+    async getProduct(id){
+        const response = await fetch(`${this.apiUrl}products/${id}`, {
+            ...this.getCommonRequest(),
             body: JSON.stringify({
               token: this.token
             })
