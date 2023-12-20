@@ -24,10 +24,10 @@ export default function ProductsDetail({apiClient, productId, goToProducts}) {
             ''
         : <>
             <h1>{product?.name}</h1>
-            <section className='product-info'>
-                <picture>
+            <section className='product-info row'>
+                <picture className='col-6'>
                     <source srcSet={buildImageUrl(product?.big_image)} media="(min-width: 600px)" />
-                    <img src={buildImageUrl(product?.medium_image)} alt="MDN" />
+                    <img className='w-100' src={buildImageUrl(product?.medium_image)} alt="MDN" />
                 </picture>
             </section>
         </>

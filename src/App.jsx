@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import ProductsList from './ProductsList/ProductsList';
 import Login from './Login';
 import ApiClient from './Services/ApiClient';
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap Bundle JS
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import ProductsDetail from './ProductsDetail/ProductsDetail';
 
 export default function App() {
@@ -30,7 +34,7 @@ export default function App() {
 
     return (
     <>
-      <div>
+      <div className="container-fluid align-middle">
         {!token ? 
           <Login apiClient={apiClient} setToken={setToken}></Login>
           :

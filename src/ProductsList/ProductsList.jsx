@@ -17,10 +17,10 @@ export default function ProductsList({apiClient, openProductDetail}) {
   });
 
   return (
-    <div>
+    <div className="container-fluid">
       <div className="shop-container">
         <h1>Shop</h1>
-          <table>
+          <table className='table'>
             <thead>
               <tr>
                 <th>ID</th>
