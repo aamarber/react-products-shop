@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
-import Shop from './ShopComponent/Shop';
-import Login from './Login';
+import ApiClient from './Services/ApiClient';
 
-function App() {
+export default function App() {
 
-  return (
+  const [token, _setToken] = useState(null);
+
+  const setToken = (tokenValue) => {
+    _setToken(tokenValue);
+
+    apiClient.setToken(tokenValue);
+  }
+
+  const apiURL = 'http://localhost:9988/';
+
+  const [apiClient, setApiClient] = useState(new ApiClient(apiURL));
+
+    return (
     <>
     </>
   )
 }
-
-export default App
