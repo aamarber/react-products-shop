@@ -64,4 +64,15 @@ export default class ApiClient{
 
         return response.json();
     }
+
+    async getReviews(productId){
+        const response = await fetch(`${this.apiUrl}reviews/${productId}`, {
+            ...this.getCommonRequest(),
+            body: JSON.stringify({
+              token: this.token
+            })
+          });
+
+        return response.json();
+    }
 }
