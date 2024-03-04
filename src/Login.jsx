@@ -1,3 +1,4 @@
+import { error } from 'console';
 import React, { useEffect, useState } from 'react'
 
 export default function Login({setToken, apiClient}) {
@@ -15,7 +16,12 @@ export default function Login({setToken, apiClient}) {
       event.preventDefault();
 
       apiClient.login(login, password)
-        .then(token => setToken(token));
+        .then(
+          token => setToken(token),
+          error => {
+            console.error(error)
+          }
+        );
     };
 
   return (
