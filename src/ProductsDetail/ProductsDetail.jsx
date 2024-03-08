@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Reviews from '../Reviews/Reviews';
 
 export default function ProductsDetail({apiClient, productId, goToProducts}) {
 
     const [product, setProduct] = useState(null);
+
+    const [reviews, setReviews] = useState(null);
 
     useEffect(() => {
 
@@ -12,6 +15,9 @@ export default function ProductsDetail({apiClient, productId, goToProducts}) {
     
         apiClient.getProduct(productId)
         .then(productDetail => setProduct(productDetail));
+
+        apiClient.getReviews(productId)
+        .then(reviewsData => setReviews(reviewsData))
       });
 
       const buildImageUrl = (imageName) => `${apiClient.apiUrl}images/${imageName}`;
@@ -29,6 +35,10 @@ export default function ProductsDetail({apiClient, productId, goToProducts}) {
                     <source srcSet={buildImageUrl(product?.big_image)} media="(min-width: 600px)" />
                     <img className='w-100' src={buildImageUrl(product?.medium_image)} alt="MDN" />
                 </picture>
+            </section>
+
+            <section className="reviews-containe">
+                <Reviews reviews={reviews}></Reviews>
             </section>
         </>
         }

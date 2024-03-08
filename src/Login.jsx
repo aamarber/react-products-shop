@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 export default function Login({setToken, apiClient}) {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     // Uncomment this so the inputs are filled with the default user and password
     useEffect(() => {
@@ -15,7 +17,12 @@ export default function Login({setToken, apiClient}) {
       event.preventDefault();
 
       apiClient.login(login, password)
-        .then(token => setToken(token));
+        .then(
+          token => setToken(token),
+          error => {
+            const myModalAlternative = new bootstrap.Modal('#errorMessage')
+            myModalAlternative.show();
+          });
     };
 
   return (
@@ -35,6 +42,7 @@ export default function Login({setToken, apiClient}) {
             </div>
           </form>
         </div>
+        <ErrorMessage message="Ha habido un error en la API"></ErrorMessage>
     </>
   )
 }
