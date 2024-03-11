@@ -21,7 +21,6 @@ export default function Reviews({reviews}) {
         </thead>
         <tbody>
             {reviews?.map((review, index) => 
-                <>
                     <tr key={`review-${index}`}>
                         <td>
                             <span>{review.author}</span>
@@ -36,7 +35,6 @@ export default function Reviews({reviews}) {
                             {buildStars(review.score).map((star, index) => <span key={`star-${index}`}>{star}</span>)}
                         </td>
                     </tr>
-                </>
             )}
         </tbody>
     </table>
